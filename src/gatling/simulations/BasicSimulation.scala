@@ -1,12 +1,10 @@
+import baseConfig.BaseSimulation
 import io.gatling.http.Predef._
 import io.gatling.core.Predef._
 
-class BasicSimulation extends Simulation {
+class BasicSimulation extends BaseSimulation {
 
   // 1 - Common HTTP Configuration
-  val httpConf = http
-    .baseUrl("http://localhost:8080/app/")
-    .header("Accept", "application/json")
 
 
   // 2 - Scenario Definition
