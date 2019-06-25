@@ -14,10 +14,13 @@ class CheckResponseBodyAndExtract extends BaseSimulation {
     .exec(http("Get All Video Games - 2nd call")
       .get("videogames")
       .check(jsonPath("$[1].id").saveAs("gameId")))
+    .exec { session => println(session); session }
 
     .exec(http("Get Specific Game")
       .get("videogames/${gameId}")
-      .check(jsonPath("$.name").is("Gran Turismo 3")))
+      .check(jsonPath("$.name").is("Gran Turismo 3"))
+      .check(bodyString.saveAs("responseBody")))
+        .exec { session => println(session("responseBody").as[String]); session }
 
 
   setUp(
