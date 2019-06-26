@@ -1,6 +1,12 @@
 ## Load Test com Gatling
 
-- Executar por linha de comando:
+- **Pré requisitos**
+  - >  
+  - > 
+
+- Iniciar app para testes
+
+- Executar testes por linha de comando:
     - ./gradlew gatlingRun-nomeDaClasse
     
 ``
@@ -10,3 +16,4 @@
 #### Referências
 
 - [Gatling](https://gatling.io/)
+- [Gatling Plugin for Gradle](https://github.com/lkishalmi/gradle-gatling-plugin)
