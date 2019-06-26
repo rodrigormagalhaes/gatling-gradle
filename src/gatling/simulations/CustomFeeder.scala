@@ -1,4 +1,3 @@
-import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 import baseConfig.BaseSimulation
@@ -14,13 +13,13 @@ class CustomFeeder extends BaseSimulation {
   val idNumbers = (11 to 20).iterator
   val rnd = new Random()
   val now = LocalDate.now()
-  val pattern = DateTimeFormatter.ofPattern("dd-MM-YYYY")
+  val pattern = DateTimeFormatter.ofPattern("YYYY-MM-dd")
 
   def randomString(length: Int) = {
     rnd.alphanumeric.filter(_.isLetter).take(length).mkString
   }
 
-  def getRandomDate(startDate: LocalDate, random: Random):String = {
+  def getRandomDate(startDate: LocalDate, random: Random): String = {
     startDate.minusDays(random.nextInt(30)).format(pattern)
   }
 
@@ -33,5 +32,22 @@ class CustomFeeder extends BaseSimulation {
     "rating" -> ("Rating - " + randomString(4)),
   ))
 
+  def postNewGame() = {
+    repeat(5) {
+      feed(customFeeder).
+        exec(http("Post New Game")
+          .post("videogames/")
+          .body(ElFileBody("NewGameTemplate.json")).asJson
+          .check(status.is(200)))
+        .pause(1)
+    }
+  }
+
+  val scn = scenario("Video Game DB")
+    .exec(postNewGame())
+
+  setUp(
+    scn.inject(atOnceUsers(1))
+  ).protocols(httpConf)
 
 }
