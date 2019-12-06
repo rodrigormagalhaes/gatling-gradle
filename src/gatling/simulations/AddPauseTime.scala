@@ -20,7 +20,7 @@ class AddPauseTime extends BaseSimulation {
     .pause(3000.milliseconds)
 
   setUp(
-    scn.inject(atOnceUsers(1))
+    scn.inject(atOnceUsers(10))
   ).protocols(httpConf)
 
 }

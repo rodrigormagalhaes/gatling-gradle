@@ -7,7 +7,7 @@ object GatlingRunner {
   def main(args: Array[String]): Unit = {
 
     // Colocar a classe a ser executada
-    val simClass = classOf[VideoGameFullTest].getName
+    val simClass = classOf[AddPauseTime].getName
 
     val props = new GatlingPropertiesBuilder
     props.simulationClass(simClass)

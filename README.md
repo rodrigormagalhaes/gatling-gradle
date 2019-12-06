@@ -28,6 +28,9 @@
 ./gradlew gatlingRun-RuntimeParameters -DUSERS=3 -DRAMPDURATION=5 -DDURATION=30
 ```
 
+- **Alterar configurações padrões**
+    - Criar arquivo gatling > resources > gatling.conf alterando as [configurações padrões](https://github.com/gatling/gatling/blob/master/gatling-core/src/main/resources/gatling-defaults.conf)
+
 - **Relatório html**: 
   > ./results/
 
